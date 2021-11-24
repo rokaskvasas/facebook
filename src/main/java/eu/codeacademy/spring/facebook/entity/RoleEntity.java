@@ -2,10 +2,10 @@ package eu.codeacademy.spring.facebook.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "role")
@@ -23,4 +23,11 @@ public class RoleEntity {
 
     @Column(name = "description")
     private String roleDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private UserEntity user;
+
+    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
+    private Set<PermissionEntity> permissions;
 }

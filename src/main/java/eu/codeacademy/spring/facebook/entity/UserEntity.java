@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -31,9 +32,15 @@ public class UserEntity {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "password")
     private String password;
 
     @Column(name = "registered_at")
     private LocalDateTime registeredAt;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private Set<RoleEntity> roles;
 }
