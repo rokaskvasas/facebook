@@ -15,33 +15,31 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
-// cia, kad veiktu ant controlleriu roles. galima neberasyti apacioj antMatcheriu hasrole.
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-//                .antMatchers("/clients/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .permitAll()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/citizens/form")
-                .failureUrl("/login?error=true")
-                .and()
-                .logout()
-//                .clearAuthentication(true) // isvalo sausainius
-                .logoutUrl("/logout")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login")
-                .permitAll();
+//        http
+//                .authorizeRequests()
+////                .antMatchers("/clients/**").hasRole("ADMIN")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .permitAll()
+//                .loginPage("/login")
+//                .loginProcessingUrl("/login")
+//                .defaultSuccessUrl("/citizens/form")
+//                .failureUrl("/login?error=true")
+//                .and()
+//                .logout()
+////                .clearAuthentication(true) // isvalo sausainius
+//                .logoutUrl("/logout")
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+//                .logoutSuccessUrl("/login")
+//                .permitAll();
     }
 
     @Override
