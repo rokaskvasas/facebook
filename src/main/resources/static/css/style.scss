@@ -1,0 +1,318 @@
+@import '_variables';
+
+body{
+    background-color: $clr-black!important;
+    margin: 0;
+    font: $defaultfont;
+}
+header{
+    height: 61px;
+    background-color: $darkgrey;
+    position: fixed;
+    top: 0;
+    border-bottom: 1px #4F4F4F solid;
+    .head-container{
+        margin: 0px 16px;
+        align-items: center;   
+    }
+    .fb-logo{
+        width: 42px;
+        height: 42px;
+        background: $clr-white;
+        background: linear-gradient($clr-blue1, $clr-blue2);
+        i{
+            color: $white;
+            font-size: 35px
+        }
+    }
+    .nav-buttons-1{
+        width: 680px;
+        display: flex;
+        grid-row: 1;
+        button{
+        font-size: 25px;
+        border: none;
+        background: none;
+        outline: none;
+        font-weight: 500;
+        border-radius: 9%;
+        width: 100%;
+        height: 48px;
+        color: $lightgray;
+        }
+        button:hover{
+            color: $darkgrey;
+        }
+        button:hover{
+            background: $footerTextcolor;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+    }
+    .nav-buttons-2{
+        display: flex;
+        button{
+            font-size: 24px;
+            border: none;
+            background: none;
+            outline: none;
+            font-weight: 500;
+            height: 60px;
+            color: $white;
+        }
+        a{
+            color: inherit;
+        }
+        a:hover{
+            background: $clr-createp-bg;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        i:hover{
+            color: $clr-blue;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        img{
+            border-radius: 30px;
+            height: 30px;
+        }
+        p{
+            font-size: 1rem;
+            font-family: $defaultfont;
+            color: $textcolor;
+            font-weight: 600;
+        }
+        button:focus{
+            box-shadow: none!important;
+        }
+    }
+    input{
+        height: 40px;
+        width: 240px;
+        color: $footerTextcolor;
+        font-family: $defaultfont;
+        outline: none;
+        background: rgba($color: #6e6e6e, $alpha: 0.4);
+        color: $white;
+    }
+    #search::placeholder{
+        color: $lightgray;
+        font-size: 1.2rem;
+        font-family: $defaultfont;
+        
+    }
+}
+
+main{
+    width: 680px;
+    margin: 100px auto;
+    font-family: $defaultfont;
+    color: $textcolor;
+    .image-details{
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        border-bottom: 1px solid;
+        padding: 10px 0px;
+        margin: 0px auto;
+        color: $lightgray;
+    }
+    section{
+        margin-bottom: 20px;
+        
+        
+    }
+    .like-button{
+        font-size: 2em;
+    }
+    .create-post{
+        width: 100%;
+        height: 5em;
+        background: $postcolor;
+        border-radius:15px;
+        color: $textcolor;
+        h5{
+            font-size: 1.4rem;
+        }
+       
+        .form-control::-webkit-input-placeholder{
+            color: $lightgray;
+        }
+        .form-control:focus {
+            box-shadow: none!important;
+            background: $clr-createpostM;
+        }
+        textarea{
+            font-size: 1.5rem;
+            outline: none;
+            resize: none;
+            border-color: $postcolor;
+            border-width: 0;
+            padding: 0%;
+            background: $clr-createpostM;
+        }
+       
+        button{
+            background-color: $clr-createp-bg;
+            color:$clr-createp-color;
+        }
+       
+        div.modal-body, div.modal-footer,
+        div.modal-header{
+            background:$clr-createpostM;
+            border-top: 0px;
+        }
+        div.modal-header{
+            border-bottom: 1px #4F4F4F solid;
+            button{
+                background: lawngreen transparent;
+                
+            }
+        }
+        div.modal-footer{
+            border-top:1px #4F4F4F solid;
+        }
+    }
+}
+footer{
+    background-color: $darkgrey;
+    height: 56px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    p{
+        color:$footerTextcolor;
+        font-size: 18px;
+        font-weight: bold;
+        
+    }
+}
+
+
+.post__comment .accordion-button::after {
+    margin-left: 0 !important;
+    display: none !important;
+  }
+  .post__comment .accordion-button:hover {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+  .post__comment .accordion-button:not(.collapsed) {
+    background: transparent !important;
+  }
+  .post__comment .accordion-button:not(.collapsed) {
+    box-shadow: none !important;
+  }
+
+  .postT{
+    background-color: $postcolor;
+    border-radius: 15px;
+   
+    .time{
+        color: $lightgray;
+        font-size:0.8em;
+        font-weight: 400;
+    }
+    .comment_accordion{
+        background: $postcolor;
+    }
+   .post__comment__content{
+    max-height: 300px;
+    overflow-y: auto;
+    background: $lightgray20;
+   }
+
+    .post__content{
+        max-height: 350px;
+        overflow-y: auto;
+    }
+    .dropdown__custom{
+        background: $clr-createpostM!important;
+        padding: 10px;
+        
+        a{
+            color: $textcolor;
+            font-weight: 700;
+        }
+        a:hover{
+            background: $clr-createp-bg;
+            border-radius: 5px;
+            
+        }
+    }
+  }
+  
+  .edit__post{
+       h5{
+        font-size: 1.4rem;
+    }
+   
+    .form-control::-webkit-input-placeholder{
+        color: $lightgray;
+    }
+    .form-control:focus {
+        box-shadow: none!important;
+        background: $clr-createpostM;
+    }
+    textarea{
+        font-size: 1.5rem;
+        outline: none;
+        resize: none;
+        border-color: $postcolor;
+        border-width: 0;
+        background: $clr-createpostM;
+    }
+   
+    button{
+        background-color: $clr-createp-bg;
+        color:$clr-createp-color;
+    }
+    div.modal-body, div.modal-footer,
+    div.modal-header{
+        background:$clr-createpostM;
+        border-top: 0px;
+    }
+    div.modal-header{
+        border-bottom: 1px #4F4F4F solid;
+        button{
+            background: lawngreen transparent;
+            
+        }
+    }
+    div.modal-footer{
+        border-top:1px #4F4F4F solid;
+    }
+}
+
+.delete__post{
+    h5{
+        font-size: 1.4rem;
+    }
+    button{
+        background-color: $clr-createp-bg;
+        color:$clr-createp-color;
+    }
+    div .modal-body{
+        max-height: 350px;
+        overflow-y: auto;
+    }
+    div.modal-body, div.modal-footer,
+    div.modal-header{
+        background:$clr-createpostM;
+        border-top: 0px;
+    }
+    div.modal-header{
+        border-bottom: 1px #4F4F4F solid;
+        button{
+            background: lawngreen transparent;
+            
+        }
+    }
+    div.modal-footer{
+        border-top:1px #4F4F4F solid;
+    }
+}
+
+// img widht 38 h 38 object fit: cover

@@ -1,0 +1,64 @@
+@import '_mixins';
+@import '_variables';
+
+.login-color{
+    background-color: $clr-blue;
+    border:$clr-blue;
+}
+.create-acc{
+    background: $clr-green;
+    border:$clr-green;
+    font-size: 1.03rem;
+    height: 3rem;
+    border-radius: 7px;
+}
+.input-clr-bg{
+    background: $clr-input-bg;
+}
+input[class="form-control"]{
+    background: $clr-input-bg;
+}
+
+main{
+    div.card{
+        width: 400px;
+        border-radius: 10px;
+    }
+    .displayW{
+       @include main-width();
+        height: 83vh;
+    }
+}
+p{
+    font-family: $main-font;
+}
+.left-side{
+    .left-side-logo{
+        max-width: 300px;
+        max-height: 100px;
+    }
+    .left-side-text{
+        max-width: 500px;
+        max-height: 104px;
+    }
+}
+footer{
+    min-height: 156px;
+    .displayFooter{
+        @include main-width();
+        font-size: .75rem;
+    }
+}
+input::placeholder{
+    font-size: 1rem;
+    font-family: $main-font;
+    
+}
+a[id="forgotPass"]{
+    font-size: 0.9rem;
+    font-family: $main-font;
+    color: $clr-blue2;
+    &:hover{
+        text-decoration: underline!important;
+    }
+}

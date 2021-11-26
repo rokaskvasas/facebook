@@ -1,0 +1,86 @@
+.login-color {
+  background-color: #0084FF;
+  border: #0084FF;
+}
+
+.create-acc {
+  background: #42b72a;
+  border: #42b72a;
+  font-size: 1.03rem;
+  height: 3rem;
+  border-radius: 7px;
+}
+
+.input-clr-bg {
+  background: #f5f6f7;
+}
+
+input[class="form-control"] {
+  background: #f5f6f7;
+}
+
+main div.card {
+  width: 400px;
+  border-radius: 10px;
+}
+
+main .displayW {
+  max-width: 980px;
+  margin: 0 auto;
+  height: 83vh;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.left-side .left-side-logo {
+  max-width: 300px;
+  max-height: 100px;
+}
+
+.left-side .left-side-text {
+  max-width: 500px;
+  max-height: 104px;
+}
+
+footer {
+  min-height: 156px;
+}
+
+footer .displayFooter {
+  max-width: 980px;
+  margin: 0 auto;
+  font-size: .75rem;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input:-ms-input-placeholder {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input::-ms-input-placeholder {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input::placeholder {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a[id="forgotPass"] {
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1877f2;
+}
+
+a[id="forgotPass"]:hover {
+  text-decoration: underline !important;
+}
+/*# sourceMappingURL=login.css.map */

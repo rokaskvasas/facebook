@@ -21,25 +21,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-////                .antMatchers("/clients/**").hasRole("ADMIN")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .permitAll()
-//                .loginPage("/login")
-//                .loginProcessingUrl("/login")
+        http
+                .authorizeRequests()
+//                .antMatchers("/assets/**").permitAll()
+//                .antMatchers("/dependencies/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .permitAll()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
 //                .defaultSuccessUrl("/citizens/form")
-//                .failureUrl("/login?error=true")
-//                .and()
-//                .logout()
-////                .clearAuthentication(true) // isvalo sausainius
-//                .logoutUrl("/logout")
-//                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID")
-//                .logoutSuccessUrl("/login")
-//                .permitAll();
+                .failureUrl("/login?error=true")
+                .and()
+                .logout()
+//                .clearAuthentication(true) // isvalo sausainius
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login")
+                .permitAll();
     }
 
     @Override

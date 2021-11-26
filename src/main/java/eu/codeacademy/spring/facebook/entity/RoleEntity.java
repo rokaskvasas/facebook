@@ -25,7 +25,7 @@ public class RoleEntity {
     private String roleDescription;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private UserEntity user;
 
     @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)

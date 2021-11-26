@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/dependencies/font awesome/css/all.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/favicon.png}" rel="icon" type="image/png"/>
+    <link th:href="@{/dependencies/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <title>Facebook</title>
+</head>
+<body>
+<header class="w-100">
+    <div class="head-container d-flex row">
+        <!--facebook logo-->
+        <div class="col-2 d-flex">
+            <div class="fb-logo d-flex align-items-end justify-content-center rounded-circle">
+                <a href="index.html"><i class="fab fa-facebook-f "></i></a>
+            </div>
+            <div>
+                <!-- search bar-->
+                <form>
+                    <input class="rounded-pill border-0 ps-3 ms-2" type="text" id="search" name="search"
+                           autocomplete="off" placeholder="Search Facebook">
+                </form>
+            </div>
+        </div>
+        <div class="col-8">
+            <!--middle nav bar-->
+            <div class="nav-buttons-1 mx-auto">
+                <button><i class="fas fa-home"></i></button>
+                <button><i class="fas fa-flag"></i></button>
+                <button><i class="fas fa-store"></i></button>
+                <button><i class="fas fa-users"></i></button>
+                <button><i class="fas fa-calendar-alt"></i></button>
+            </div>
+        </div>
+        <!-- right side nav bar-->
+        <div class="nav-buttons-2 col-2">
+            <div class="d-flex w-100 justify-content-end">
+                <a href="#" class="text-white btn d-flex my-auto rounded-pill">
+                    <img src="https://unsplash.it/30" alt="userimg">
+                    <p class="m-0 ps-2 my-auto">Username</p>
+                </a>
+                <button type="button"><i class="fas fa-bell"></i></button>
+                <button type="button"><i class="fab fa-facebook-messenger"></i></button>
+                <button type="button"><a href="login.html"><i class="fas fa-sign-out-alt"></i></a></button>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="create-post p-3">
+            <!-- create post -->
+            <div class="d-flex">
+                <!-- current user -->
+                <div class=" p-1">
+                    <img class="rounded-circle me-2" src="https://unsplash.it/40" alt="avatar">
+                </div>
+                <!-- create post modal button-->
+                <button type="button" class="btn w-100 text-start fs-4 rounded-pill border-0" data-bs-toggle="modal"
+                        data-bs-target="#createPostForm"> What's on your mind,(curret-user)?
+                </button>
+            </div>
+            <!-- create post Modal -->
+            <div class="modal fade" id="createPostForm" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark">
+                        <!-- header -->
+                        <div class="modal-header">
+                            <h5 class="w-100 m-0 text-center ">Create post</h5>
+                            <button type="button" class="btn-close ms-0 btn-close-dark rounded-circle"
+                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <!-- body -->
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <img src="https://unsplash.it/50" class="rounded-circle" alt="avatar">
+                                <span class="ms-2 fw-bold">username</span>
+                            </div>
+                            <form id="messageForm">
+                                <div class="form-control p-0 border-0 rounded-0 ">
+                                    <textarea onkeyup="btnActivation()" placeholder="What's on your mind, username?"
+                                              class="form-control rounded-0 text-light" id="post-text"
+                                              rows="7"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- footer -->
+                        <div class="modal-footer">
+                            <button type="submit" form="messageForm" id="post-button"
+                                    class="btn w-100 rounded-2 fw-bold border-0" disabled>Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <!-- post -->
+        <div class="postT p-4 mt-3">
+            <!-- author -->
+            <div class="d-flex justify-content-between">
+                <!-- avatar -->
+                <div class="d-flex">
+                    <img src="https://unsplash.it/38" alt="avatar" class="rounded-circle me-2"
+                         style="width: 38px; height: 38px; object-fit: cover;">
+                    <div>
+                        <p class="m-0 fw-bold"> username </p>
+                        <span class="text-muted fs-7 time">time mm/DD/YYYY</span>
+                    </div>
+                </div>
+                <!-- edit -->
+                <i class="fas fa-ellipsis-h text-muted fs-5" type="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" id="postMenu"></i>
+                <!-- edit menu -->
+                <ul class="dropdown-menu border-0 dropdown__custom" aria-labelledby="postMenu">
+                    <li class="d-flex align-items-center">
+                        <a href="#" class="dropdown-item d-flex align-items-center fs-7" data-bs-toggle="modal"
+                           data-bs-target="#editPostModal"><i class="fas fa-edit"></i> Edit post</a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <a href="#" class="dropdown-item d-flex align-items-center  fs-7" data-bs-toggle="modal"
+                           data-bs-target="#deletePostModal"><i class="far fa-trash-alt"></i> Delete post</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- edit post modal -->
+            <div class="edit__post">
+                <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel"
+                     aria-hidden="true" data-bs-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-circle">
+                            <!-- header -->
+                            <div class="modal-header align-items-center">
+                                <h5 class="w-100 m-0 text-center" id="editPostModalLabel">Edit post</h5>
+                                <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <!-- body -->
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <img src="https://unsplash.it/50" class="rounded-circle" alt="avatar">
+                                    <span class="ms-2 fw-bold">username</span>
+                                </div>
+                                <form id="editPostForm">
+                                    <div class="form-control p-0 border-0 rounded-0">
+                                        <textarea onkeyup="editPostActivate()"
+                                                  class="form-control rounded-0 text-light p-0" id="editPostText"
+                                                  rows="7"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- footer -->
+                            <div class="modal-footer">
+                                <button type="submit" form="editPostForm" id="editPostButton"
+                                        class="btn w-100 border-0 rounded-2" disabled>Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- delete post modal -->
+            <div class="delete__post">
+                <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <!-- header -->
+                            <div class="modal-header">
+                                <h5 class="w-100 m-0 text-center" id="deletePostModalLabel">Delete post</h5>
+                                <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <!-- body -->
+                            <div class="modal-body">
+                                <p>USER POST TEXT</p>
+                            </div>
+                            <!-- footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger border-0 w-100">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- post content -->
+            <div class="mt-3">
+                <!-- content -->
+                <div class="post__content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa recusandae reiciendis dolor,
+                        cumque ad repudiandae est mollitia dolorem assumenda aliquam molestias debitis ea fuga eum
+                        facilis voluptatibus et nam tempora soluta qui atque porro illo! Officia quos eveniet
+                        repudiandae, dolores, enim explicabo odio iusto illum est incidunt ab rem recusandae laboriosam
+                        fuga laborum debitis maiores? Sint, iusto eveniet similique, nam quis iure quae fuga ipsa
+                        molestias voluptatem quos officiis illo dicta ipsum, porro quia. Accusamus labore perferendis
+                        accusantium aliquid at nostrum sequi fuga possimus, repellat ab nesciunt exercitationem nihil
+                        laborum ipsam quo delectus sed sunt aspernatur doloribus beatae dolore pariatur! Praesentium
+                        nesciunt labore provident molestiae iure similique nostrum, harum cupiditate et? Doloribus
+                        commodi aut, recusandae deserunt nemo possimus ducimus exercitationem eius quidem unde illo ab
+                        incidunt enim maiores porro sequi id voluptatem eos cumque cupiditate. Distinctio officia
+                        accusantium nisi ipsa quasi perferendis ducimus minima doloremque esse tempore eius hic facere
+                        quidem, quam adipisci molestias sapiente similique assumenda, enim tenetur eveniet dolore
+                        voluptatem omnis? Ipsam similique iusto a excepturi accusantium quas veniam aperiam vitae odio
+                        officia consectetur est fugit quasi temporibus sint ipsa explicabo facere eveniet, tempore ullam
+                        sunt. Iure quia, quos reprehenderit similique ipsum a distinctio sed porro laboriosam. Dolorem
+                        atque alias quas natus, dicta sequi vitae itaque fuga porro placeat repudiandae reiciendis
+                        suscipit? Pariatur, corrupti quo! Repellendus aliquam voluptatibus inventore commodi, possimus
+                        dolor voluptates blanditiis praesentium quae accusantium neque, nam numquam omnis. Et iure quo
+                        placeat fugiat. Molestias nulla animi iusto nobis ipsum non odio porro. Non quidem dicta vitae
+                        ea eveniet id, totam aut dignissimos facere doloremque accusamus nesciunt assumenda nemo
+                        corrupti? Eius, placeat fugit, nemo harum ex tempora veritatis at enim porro quia fuga officia
+                        tenetur quo eveniet voluptates maiores esse nobis quaerat asperiores nihil fugiat nesciunt
+                        dolor! Excepturi cum, magni obcaecati ea labore est iure aspernatur ipsum vitae soluta esse
+                        animi assumenda molestiae. Culpa, facere pariatur iusto, animi quas provident eum magnam ipsum
+                        cumque modi tempora mollitia laboriosam ab facilis minima, temporibus atque reprehenderit
+                        consectetur. Delectus, eaque modi nesciunt odit, quibusdam consectetur praesentium pariatur amet
+                        quia reprehenderit, ipsa temporibus cupiditate magni mollitia rem sint! Eligendi ipsam facilis
+                        porro deserunt fugit earum soluta, voluptatem magni, inventore beatae mollitia cum velit
+                        repellendus aut error aperiam molestiae nostrum labore magnam? Reprehenderit cum voluptatibus
+                        illum suscipit autem excepturi! Doloremque fugit nihil in laudantium. Fuga ea asperiores velit
+                        iure, exercitationem maxime dolores distinctio id minus, modi saepe, in aut dolorum architecto
+                        nesciunt. Voluptates tenetur modi assumenda aut molestiae! Maiores odit, explicabo voluptate
+                        perferendis soluta a laboriosam asperiores aliquam suscipit quibusdam porro deserunt facere
+                        dolore! Quisquam minima consectetur facilis numquam atque, esse fugiat minus cumque dignissimos
+                        quod temporibus deserunt, ducimus, laboriosam eum. Fugit adipisci neque, eligendi dolor ad, ut
+                        quod id illum omnis earum iusto voluptatum quas minima non. Repudiandae accusantium facilis quod
+                        aliquid eum doloribus cumque iure eligendi, maxime fugiat dolorem id minus voluptates rem modi
+                        corrupti aspernatur recusandae magni debitis accusamus? Minima, voluptate doloremque natus
+                        voluptatem explicabo recusandae inventore voluptas earum aperiam placeat saepe, numquam, magni
+                        iste enim consectetur doloribus.</p>
+                </div>
+                <!-- comments -->
+                <div class="position-relative mt-3 post__comment">
+                    <!-- comment start -->
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item border-0 comment_accordion">
+                            <!-- comment collapse -->
+                            <h2 class="accordion-header border-bottom border-secondary" id="headingOne">
+                                <div class="accordion-button collapsed d-flex justify-content-end" type="button"
+                                     data-bs-toggle="collapse" data-bs-target="#postComment" aria-expanded="true"
+                                     aria-controls="postComment">
+                                    <!-- comment count -->
+                                    <p class="m-0">2 comments</p>
+                                </div>
+                            </h2>
+                            <!-- comment expand -->
+                            <div id="postComment" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <!-- comment -->
+                                    <div class="d-flex align-item-center my-1">
+                                        <!-- avatar -->
+                                        <div class="mt-4">
+                                            <img src="https://unsplash.it/40" alt="avatar"
+                                                 class="rounded-circle me-2 align-self-start"
+                                                 style="width: 38px; height: 38px; object-fit: cover;"/>
+                                        </div>
+                                        <!-- comment text -->
+                                        <div class="rounded w-100 ">
+                                            <!-- menu -->
+                                            <div class="d-flex justify-content-end mb-2 ">
+                                                <i class="fas fa-ellipsis-h " type="button" data-bs-toggle="dropdown"
+                                                   aria-expanded="false"></i>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown__custom ">
+                                                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit"></i>
+                                                        Edit comment</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                            class="far fa-trash-alt"></i> Delete comment</a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- text -->
+                                            <p class="fw-bold m-0 text-light">username</p>
+                                            <div class="post__comment__content p-2 rounded">
+                                                <p class="0- fs-7 p-2 rounded mb-0">lorem100</p>
+                                            </div>
+                                            <p class="mb-3 fs-7 time">2021/10/10</p>
+                                        </div>
+                                    </div>
+                                    <!-- create comment -->
+                                    <form action="" class="d-flex my-1">
+                                        <!-- avatar -->
+                                        <div>
+                                            <img src="https://unsplash.it/40" alt="avatar"
+                                                 class="rounded-circle me-2 align-self-center"
+                                                 style="width: 38px; height: 38px; object-fit: cover;"/>
+                                        </div>
+                                        <!-- input -->
+                                        <input type="text" class="form-control border-0 rounded-pill bg-gray"
+                                               placeholder="Write a comment">
+                                        <button type="submit" class="btn"><i class="fas fa-play text-light"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of accordion -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div>
+        <p> Facebook &#169 2021</p>
+    </div>
+</footer>
+<script th:src="@{/js/script.js}" src="./js/script.js"></script>
+<script th:src="@{/dependecies/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

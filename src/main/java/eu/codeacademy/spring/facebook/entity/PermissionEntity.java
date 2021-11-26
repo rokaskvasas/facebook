@@ -25,6 +25,6 @@ public class PermissionEntity {
     private String permissionDescription;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id",insertable = false, updatable = false)
     private RoleEntity role;
 }
