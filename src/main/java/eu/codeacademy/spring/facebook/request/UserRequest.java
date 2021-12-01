@@ -1,20 +1,21 @@
-package eu.codeacademy.spring.facebook.model;
+package eu.codeacademy.spring.facebook.request;
 
-import lombok.*;
+import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserRequest {
 
     private Long userId;
 
     private Integer roleId;
-
+  
     private String firstName;
 
     private String lastName;
@@ -26,5 +27,4 @@ public class User {
     private String email;
 
     private LocalDateTime registeredAt;
-
 }

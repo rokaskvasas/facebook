@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -15,11 +16,11 @@ import java.time.LocalDateTime;
 public class PostEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long postId;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable = false, updatable = false)
     private Long userId;
 
     @Column(name = "post_text")
@@ -30,4 +31,12 @@ public class PostEntity {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity userPost;
+
+    @OneToMany(mappedBy = "postComment")
+    private List<CommentEntity> postComments;
+
 }

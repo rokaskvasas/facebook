@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/springsecurity">
+<div th:fragment="registerModal">
+    <div class="modal-body">
+        <!--  create new account form-->
+        <form th:action="@{/modal/register}" th:object="${user}" class="row needs-validation" id="signUpForm" novalidate
+              th:method="post">
+            <div class="col-6 mb-3 ">
+                <!-- first name-->
+                <input th:field="*{firstName}" type="text" class="form-control" id="first_name" name="first_name"
+                       placeholder="First name" pattern="^[a-zA-Z]{1,15}$" required/>
+                <div class="invalid-feedback">
+                    What's your name?
+                </div>
+            </div>
+            <div class="col-6 mb-3">
+                <!-- last name-->
+                <input th:field="*{lastName}" type="text" class="form-control" id="last_name" name="last_name"
+                       placeholder="Last name" pattern="^[a-zA-Z]{1,15}$" required/>
+                <div class="invalid-feedback">
+                    What's your last name?
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <!-- email -->
+                <input th:field="*{email}" type="text" class="form-control" id="email" name="email"
+                       placeholder="Email"
+                       pattern="^[a-zA-Z0-9\.]{1,20}+@[a-zA-Z0-9]{2,20}+[\.]+[a-zA-Z0-9\.]{2,10}$"
+                       required/>
+                <div class="invalid-feedback">
+                    Please enter valid email!
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <!-- username -->
+                <input th:field="*{username}" type="text" class="form-control" id="regUsername" name="username"
+                       placeholder="Username" pattern="^[a-zA-Z0-9]{1,15}$" required/>
+                <div class="invalid-feedback">
+                    Please enter valid username!
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <!-- password -->
+                <input th:field="*{password}" type="password" class="form-control" id="regPassword" name="password"
+                       placeholder="New password" pattern="^[a-zA-Z0-9]{4,15}$" required/>
+                <div class="invalid-feedback">
+                    Please enter password which contains 4-15 characters.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row w-100">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn create-acc text-light fw-bold fs-5 w-50 rounded-5">
+                            Sign up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:fragment="createPostModal">
+<!--    <div class="modal fade" id="createPostForm" tabindex="-1" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-dialog-centered">-->
+<!--            <div class="modal-content bg-dark">-->
+<!--                &lt;!&ndash; header &ndash;&gt;-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="w-100 m-0 text-center ">Create post</h5>-->
+<!--                    <button type="button" class="btn-close ms-0 btn-close-dark rounded-circle"-->
+<!--                            data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                &lt;!&ndash; body &ndash;&gt;-->
+<!--                <div class="modal-body">-->
+<!--                    <div class="mb-3">-->
+<!--                        <img src="https://unsplash.it/50" class="rounded-circle" alt="avatar">-->
+<!--                        <span class="ms-2 fw-bold">username</span>-->
+<!--                    </div>-->
+<!--                    <form th:action="@{/modal/createpost}" th:object="${post}" id="messageForm">-->
+<!--                        <div class="form-control p-0 border-0 rounded-0 ">-->
+<!--                            <textarea th:field="*{postText}"-->
+<!--                                      onkeyup="btnActivation()"-->
+<!--                                      th:placeholder="'What\'s on your mind,'+${#authentication.name}'?'"-->
+<!--                                      class="form-control rounded-0 text-light" id="post-text"-->
+<!--                                      rows="7">-->
+<!--                            </textarea>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                &lt;!&ndash; footer &ndash;&gt;-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="submit" form="messageForm" id="post-button"-->
+<!--                            class="btn w-100 rounded-2 fw-bold border-0" disabled>Post-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+</html>

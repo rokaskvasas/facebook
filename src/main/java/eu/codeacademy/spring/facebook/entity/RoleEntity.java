@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class RoleEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer roleId;
 
@@ -26,8 +26,6 @@ public class RoleEntity {
 
     @ManyToOne
     @JoinColumn(name = "id", insertable = false, updatable = false)
-    private UserEntity user;
+    private UserEntity userRole;
 
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
-    private Set<PermissionEntity> permissions;
 }

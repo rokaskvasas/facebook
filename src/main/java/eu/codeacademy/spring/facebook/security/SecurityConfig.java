@@ -19,24 +19,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailsService customUserDetailsService;
 
+    private final PasswordService passwordService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-//                .antMatchers("/assets/**").permitAll()
-//                .antMatchers("/dependencies/**").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/dependencies/**").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/assets/**").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/index").permitAll()
+                .antMatchers("/registerSuccessfully").permitAll()
+                .antMatchers("/login/register").permitAll()
+                .antMatchers("/modal/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .permitAll()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-//                .defaultSuccessUrl("/citizens/form")
+                .defaultSuccessUrl("/index")
                 .failureUrl("/login?error=true")
                 .and()
                 .logout()
 //                .clearAuthentication(true) // isvalo sausainius
-                .logoutUrl("/logout")
+//                .logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login")
@@ -45,19 +54,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web)  {
-        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+        web.ignoring().requestMatchers();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(customUserDetailsService)
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordService.passwordEncoder());
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }
 

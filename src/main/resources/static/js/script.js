@@ -1,29 +1,52 @@
-function btnActivation(){
+function btnActivation(btn,text) {
 
-    let button = document.getElementById("post-button");
-    if(!document.getElementById('post-text').value.length){
+    let button = document.getElementById(btn);
+    if (!document.getElementById(text).value.length) {
         button.disabled = true;
-        button.classList.remove("btn-primary");    
-               
-    }else{
+        button.classList.remove("btn-primary");
+
+    } else {
         button.disabled = false;
         button.classList.add("btn-primary");
-    }           
-}   
-function editPostActivate(){
+    }
+}
+function commentBtnActivation(btn,text) {
 
-    let button = document.getElementById("editPostButton");
-    if(!document.getElementById('editPostText').value.length){
+    let button = document.getElementById(btn);
+    if (!document.getElementById(text).value.length) {
         button.disabled = true;
-        button.classList.remove("btn-primary");    
-               
-    }else{
+    } else {
         button.disabled = false;
-        button.classList.add("btn-primary");
-    }           
-}   
+    }
+}
 
-// function editPostModal(event){
-//     event.preventDefault();
-//     document.getElementById('#editPostModal').show().find('.modal-content').load($(this).attr('href'));
-//   };
+
+const editmodal = document.querySelector('#editPostModal');
+editmodal.addEventListener('show.bs.modal', openModule)
+
+
+// TODO:: modaltext.textcontent doesn't not fills with text..
+
+function openModule(event) {
+
+    // Button that triggered the modal
+
+    let button = event.relatedTarget;
+
+    let exampleModal = event.modal;
+
+    // Extract info from data-bs-* attributes
+
+    let recipient = button.getAttribute('data-bs-postId');
+
+    let modalText = exampleModal.querySelector('#editPostText');
+
+    modalText.textContent = recipient;
+
+}
+function transferTextToEditModal(from, to, event){
+
+     editCommentModal = document.querySelector('')
+    let button = event.relatedTarget
+
+}

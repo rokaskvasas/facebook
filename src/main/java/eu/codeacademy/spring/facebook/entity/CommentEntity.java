@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long commentId;
 
@@ -33,4 +33,11 @@ public class CommentEntity {
     @Column(name = "comment_text")
     private String commentText;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id",insertable = false, updatable = false)
+    private PostEntity postComment;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",insertable = false, updatable = false)
+    private UserEntity userComment;
 }

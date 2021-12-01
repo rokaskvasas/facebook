@@ -1,11 +1,13 @@
 package eu.codeacademy.spring.facebook.entity;
 
+import jdk.jfr.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,7 +18,7 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long userId;
 
@@ -39,8 +41,15 @@ public class UserEntity {
     private String password;
 
     @Column(name = "registered_at")
+    @Timestamp
     private LocalDateTime registeredAt;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userRole",fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userPost")
+    private List<PostEntity> postEntityList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userComment")
+    private List<CommentEntity> userComments;
 }
