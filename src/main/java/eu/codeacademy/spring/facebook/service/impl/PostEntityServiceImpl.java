@@ -8,10 +8,12 @@ import eu.codeacademy.spring.facebook.model.Post;
 import eu.codeacademy.spring.facebook.repository.PostEntityRepository;
 import eu.codeacademy.spring.facebook.repository.UserEntityRepository;
 import eu.codeacademy.spring.facebook.request.PostRequest;
+import eu.codeacademy.spring.facebook.service.CommentEntityService;
 import eu.codeacademy.spring.facebook.service.PostEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +25,8 @@ public class PostEntityServiceImpl implements PostEntityService {
     private final PostEntityRepository postEntityRepository;
 
     private final UserEntityRepository userEntityRepository;
+
+    private final CommentEntityService commentEntityService;
 
     @Override
     public List<Post> getAllPosts() {
@@ -42,7 +46,6 @@ public class PostEntityServiceImpl implements PostEntityService {
         entity.setCreatedAt(LocalDateTime.now());
         entity.setUserPost(userEntityRepository.findByUserId(request.getUserId())
                 .orElseThrow(() -> new NotFoundUserById("Couldn't find such user by id: "+request.getUserId())));
-//        entity.setPostComments(userEntityRepository.findByUserId(request.getUserId()).getUserComments());
         postEntityRepository.saveAndFlush(entity);
     }
 
@@ -53,6 +56,17 @@ public class PostEntityServiceImpl implements PostEntityService {
         entity.setPostText(postRequest.getPostText());
         entity.setUpdatedAt(LocalDateTime.now());
         postEntityRepository.save(entity);
+    }
+
+    @Override
+    @Transactional
+    public void deletePost(Long postId) {
+       var post = postEntityRepository.getByPostId(postId)
+               .orElseThrow(() -> new PostNotFound(String.format("Post with such id: %d not found",postId)));
+        if(!post.getPostComments().isEmpty()){
+            post.getPostComments().forEach(entity -> commentEntityService.deleteComment(entity.getCommentId()));
+        }
+        postEntityRepository.removePostEntityByPostId(postId);
     }
 
     private Post createPostFromEntity(PostEntity entity) {

@@ -50,3 +50,14 @@ function transferTextToEditModal(from, to, event){
     let button = event.relatedTarget
 
 }
+
+function sendCustomHTTPMethod(url,method) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open(`${method}`, url, true);
+    xhttp.onload = function () {
+        let responseURL = xhttp.responseURL;
+        console.log("Redirecting to:", responseURL);
+        window.location.replace(responseURL);
+    };
+    xhttp.send();
+}

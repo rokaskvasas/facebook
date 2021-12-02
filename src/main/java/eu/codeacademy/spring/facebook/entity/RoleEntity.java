@@ -1,10 +1,12 @@
 package eu.codeacademy.spring.facebook.entity;
 
+import eu.codeacademy.spring.facebook.model.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,8 +26,6 @@ public class RoleEntity {
     @Column(name = "description")
     private String roleDescription;
 
-    @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private UserEntity userRole;
-
+    @ManyToMany(mappedBy = "roles")
+    private List<UserEntity> users;
 }

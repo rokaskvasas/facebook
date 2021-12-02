@@ -19,4 +19,6 @@ public interface PostEntityService {
 
 
     void editPost(PostRequest postRequest);
+
+    void deletePost(Long postId);
 }

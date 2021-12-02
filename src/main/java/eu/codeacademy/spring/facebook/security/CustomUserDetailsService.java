@@ -8,10 +8,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 
 
 @RequiredArgsConstructor
 @Component
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserEntityRepository userEntityRepository;
@@ -21,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return userEntityRepository.findByUsernameOrEmail(usernameOrEmail,usernameOrEmail)
                 .map(this::convertUserEntityToPrincipal)
-                .orElseThrow(() -> new UsernameNotFoundException("user not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     private UserPrincipal convertUserEntityToPrincipal(UserEntity user){

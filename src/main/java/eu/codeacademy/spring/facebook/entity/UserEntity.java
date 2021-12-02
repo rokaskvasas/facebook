@@ -22,9 +22,6 @@ public class UserEntity {
     @Column(name = "id", nullable = false)
     private Long userId;
 
-    @Column(name = "role_id")
-    private Integer roleId;
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -44,7 +41,11 @@ public class UserEntity {
     @Timestamp
     private LocalDateTime registeredAt;
 
-    @OneToMany(mappedBy = "userRole",fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private Set<RoleEntity> roles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userPost")

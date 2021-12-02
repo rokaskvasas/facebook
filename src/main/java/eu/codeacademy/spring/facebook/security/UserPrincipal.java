@@ -2,16 +2,13 @@ package eu.codeacademy.spring.facebook.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import eu.codeacademy.spring.facebook.entity.RoleEntity;
-import eu.codeacademy.spring.facebook.model.Permission;
 import eu.codeacademy.spring.facebook.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,20 +21,27 @@ public class UserPrincipal implements UserDetails {
     private final String password;
     private final Set<RoleEntity> roles;
 
+
     public Long getUserId() {
         return userId;
     }
 
 
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//
+////        TODO:: endless permissions and roles doesn't sets right by DB(entity problem).
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//        for (RoleEntity role : roles) {
+//            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+//        }
+//        return authorities;
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-//        TODO:: endless permissions and roles doesn't sets right by DB(entity problem).
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (RoleEntity role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-        }
-        return authorities;
+        String[] userRoles = roles.stream().map((RoleEntity::getRoleName)).toArray(String[]::new);
+        return AuthorityUtils.createAuthorityList(userRoles);
     }
 
 

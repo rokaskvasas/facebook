@@ -13,8 +13,6 @@ public class User {
 
     private Long userId;
 
-    private Integer roleId;
-
     private String firstName;
 
     private String lastName;

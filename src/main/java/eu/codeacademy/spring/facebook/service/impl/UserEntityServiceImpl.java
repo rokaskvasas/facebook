@@ -1,8 +1,10 @@
 package eu.codeacademy.spring.facebook.service.impl;
 
 
+import eu.codeacademy.spring.facebook.entity.RoleEntity;
 import eu.codeacademy.spring.facebook.entity.UserEntity;
 import eu.codeacademy.spring.facebook.model.User;
+import eu.codeacademy.spring.facebook.repository.RoleEntityRepository;
 import eu.codeacademy.spring.facebook.repository.UserEntityRepository;
 import eu.codeacademy.spring.facebook.request.UserRequest;
 import eu.codeacademy.spring.facebook.security.PasswordService;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 public class UserEntityServiceImpl implements UserEntityService {
 
     private final UserEntityRepository userEntityRepository;
+    private final RoleEntityRepository roleEntityRepository;
 
     private final PasswordService passwordService;
 
@@ -40,13 +44,13 @@ public class UserEntityServiceImpl implements UserEntityService {
     @Override
     public void registerUser(UserRequest request) {
         var entity = new UserEntity();
-        entity.setRoleId(2);
         entity.setUsername(request.getUsername());
         entity.setPassword(passwordService.passwordEncoder().encode(request.getPassword()));
         entity.setEmail(request.getEmail());
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
         entity.setRegisteredAt(LocalDateTime.now());
+        entity.setRoles(roleEntityRepository.findById(2).stream().collect(Collectors.toSet()));
         userEntityRepository.saveAndFlush(entity);
     }
 
@@ -60,7 +64,6 @@ public class UserEntityServiceImpl implements UserEntityService {
                 .username(entity.getUsername())
                 .registeredAt(entity.getRegisteredAt())
                 .userId(entity.getUserId())
-                .roleId(entity.getRoleId())
                 .build();
     }
 

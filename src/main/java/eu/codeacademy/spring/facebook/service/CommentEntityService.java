@@ -16,5 +16,6 @@ public interface CommentEntityService {
 
     List<CommentEntity> getAllCommentEntities();
 
-    void deleteCommentEntity(Long commentId);
+
+    void deleteComment(Long commentId);
 }

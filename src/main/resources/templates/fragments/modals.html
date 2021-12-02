@@ -3,7 +3,7 @@
 <div th:fragment="registerModal">
     <div class="modal-body">
         <!--  create new account form-->
-        <form th:action="@{/modal/register}" th:object="${user}" class="row needs-validation" id="signUpForm" novalidate
+        <form th:action="@{/register}" th:object="${user}" class="row needs-validation" id="signUpForm" novalidate
               th:method="post">
             <div class="col-6 mb-3 ">
                 <!-- first name-->
@@ -59,41 +59,39 @@
         </form>
     </div>
 </div>
-<div th:fragment="createPostModal">
-<!--    <div class="modal fade" id="createPostForm" tabindex="-1" aria-hidden="true">-->
-<!--        <div class="modal-dialog modal-dialog-centered">-->
-<!--            <div class="modal-content bg-dark">-->
-<!--                &lt;!&ndash; header &ndash;&gt;-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="w-100 m-0 text-center ">Create post</h5>-->
-<!--                    <button type="button" class="btn-close ms-0 btn-close-dark rounded-circle"-->
-<!--                            data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; body &ndash;&gt;-->
-<!--                <div class="modal-body">-->
-<!--                    <div class="mb-3">-->
-<!--                        <img src="https://unsplash.it/50" class="rounded-circle" alt="avatar">-->
-<!--                        <span class="ms-2 fw-bold">username</span>-->
-<!--                    </div>-->
-<!--                    <form th:action="@{/modal/createpost}" th:object="${post}" id="messageForm">-->
-<!--                        <div class="form-control p-0 border-0 rounded-0 ">-->
-<!--                            <textarea th:field="*{postText}"-->
-<!--                                      onkeyup="btnActivation()"-->
-<!--                                      th:placeholder="'What\'s on your mind,'+${#authentication.name}'?'"-->
-<!--                                      class="form-control rounded-0 text-light" id="post-text"-->
-<!--                                      rows="7">-->
-<!--                            </textarea>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; footer &ndash;&gt;-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="submit" form="messageForm" id="post-button"-->
-<!--                            class="btn w-100 rounded-2 fw-bold border-0" disabled>Post-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+<div th:fragment="createPostModal" class="modal fade" id="createPostForm" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <!-- header -->
+            <div class="modal-header">
+                <h5 class="w-100 m-0 text-center ">Create post</h5>
+                <button type="button" class="btn-close ms-0 btn-close-dark rounded-circle"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- body -->
+            <div class="modal-body">
+                <div class="mb-3">
+                    <img src="https://unsplash.it/50" class="rounded-circle" alt="avatar">
+                    <span th:text="${#authentication.name} " class="ms-2 fw-bold"></span>
+                </div>
+                <form th:action="@{/post/create}" th:object="${postAtt}" id="messageForm"
+                      th:method="post">
+                    <div class="form-control p-0 border-0 rounded-0 ">
+                            <textarea th:field="*{postText}"
+                                      onkeyup="btnActivation('post-button','post-text')"
+                                      th:placeholder="'What\'s on your mind '+${#authentication.name}+'?'"
+                                      class="form-control rounded-0 text-light" id="post-text" rows="7">
+                            </textarea>
+                    </div>
+                </form>
+            </div>
+            <!-- footer -->
+            <div class="modal-footer">
+                <button type="submit" form="messageForm" id="post-button"
+                        class="btn w-100 rounded-2 fw-bold border-0" disabled>Post
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 </html>

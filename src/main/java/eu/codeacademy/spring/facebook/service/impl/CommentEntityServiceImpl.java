@@ -37,17 +37,17 @@ public class CommentEntityServiceImpl implements CommentEntityService {
         entity.setCreatedAt(LocalDateTime.now());
         entity.setPostId(request.getPostId());
         entity.setUserComment(userEntityRepository.findByUserId(request.getUserId())
-                .orElseThrow(() -> new NotFoundUserById("Couldn't find user by id: "+request.getUserId())));
+                .orElseThrow(() -> new NotFoundUserById("Couldn't find user by id: " + request.getUserId())));
         entity.setPostComment(postEntityRepository.getByPostId(request.getPostId())
-                .orElseThrow(() -> new NoSuchPostById("Couldn't find post by id: "+request.getPostId())));
-         commentEntityRepository.saveAndFlush(entity);
+                .orElseThrow(() -> new NoSuchPostById("Couldn't find post by id: " + request.getPostId())));
+        commentEntityRepository.saveAndFlush(entity);
     }
 
     @Override
     public void editComment(CommentRequest commentRequest) {
         var entity = commentEntityRepository.findById(commentRequest.getCommentId())
                 .orElseThrow(() ->
-                        new NoSuchCommentExist("Couldn't find comment with id: "+commentRequest.getCommentId()));
+                        new NoSuchCommentExist("Couldn't find comment with id: " + commentRequest.getCommentId()));
         entity.setCommentText(commentRequest.getCommentText());
         entity.setUpdatedAt(LocalDateTime.now());
         commentEntityRepository.save(entity);
@@ -66,10 +66,11 @@ public class CommentEntityServiceImpl implements CommentEntityService {
 
     @Override
     @Transactional
-    public void deleteCommentEntity(Long commentId) {
+    public void deleteComment(Long commentId) {
         commentEntityRepository.removeByCommentId(commentId);
 
     }
+
 
     private Comments createCommentFromEntity(CommentEntity entity) {
         Comments comment = new Comments();
@@ -77,7 +78,7 @@ public class CommentEntityServiceImpl implements CommentEntityService {
         comment.setUserId(entity.getUserId());
         comment.setCreatedAt(entity.getCreatedAt());
         comment.setPostId(entity.getPostId());
-        if(entity.getUpdatedAt() != null){
+        if (entity.getUpdatedAt() != null) {
             comment.setUpdatedAt(entity.getUpdatedAt());
         }
         return comment;
