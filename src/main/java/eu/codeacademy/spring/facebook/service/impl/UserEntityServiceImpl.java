@@ -12,6 +12,7 @@ import eu.codeacademy.spring.facebook.security.SecurityConfig;
 import eu.codeacademy.spring.facebook.service.UserEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,16 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
+    public List<User> getAllUsersTest() {
+        return userEntityRepository.findAll().stream().map(this::createUserFromEntity).collect(Collectors.toUnmodifiableList());
+    }
+
+    @Override
+    public List<UserEntity> getAllUsersEntity() {
+        return userEntityRepository.findAll();
+    }
+
+    @Override
     public Optional<User> getUser() {
         return Optional.empty();
     }
@@ -52,6 +63,13 @@ public class UserEntityServiceImpl implements UserEntityService {
         entity.setRegisteredAt(LocalDateTime.now());
         entity.setRoles(roleEntityRepository.findById(2).stream().collect(Collectors.toSet()));
         userEntityRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public UserEntity getUserEntity(String username) {
+        var entity = userEntityRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found: "+username));
+        return entity;
     }
 
     private User createUserFromEntity(UserEntity entity) {

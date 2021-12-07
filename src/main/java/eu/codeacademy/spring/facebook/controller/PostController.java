@@ -21,7 +21,7 @@ public class PostController {
 
     private final PostEntityService postEntityService;
 
-
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/create")
     public String createPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result,
                              @AuthenticationPrincipal UserPrincipal principal) {
@@ -35,12 +35,10 @@ public class PostController {
     }
 
     @PutMapping("/edit")
-    public String editPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result,
-                           @AuthenticationPrincipal UserPrincipal principal){
+    public String editPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result){
         if(result.hasErrors()){
             return "error";
         }
-        postRequest.setUserId(principal.getUserId());
         postEntityService.editPost(postRequest);
         log.info("Post edited");
         return "redirect:/index";
@@ -48,9 +46,29 @@ public class PostController {
 
     @DeleteMapping("/delete/{postId}")
     public String deletePost(@PathVariable Long postId){
-        postEntityService.deletePost(postId);
+        postEntityService.deletePostAndComments(postId);
         log.info("Post deleted");
         return "redirect:/index";
     }
+
+
+//    @PostMapping("/edit")
+//    public String editPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result,
+//                           @AuthenticationPrincipal UserPrincipal principal){
+//        if(result.hasErrors()){
+//            return "error";
+//        }
+//        postRequest.setUserId(principal.getUserId());
+//        postEntityService.editPost(postRequest);
+//        log.info("Post edited");
+//        return "redirect:/index";
+//    }
+//
+//    @PostMapping("/delete/{postId}")
+//    public String deletePost(@PathVariable Long postId){
+//        postEntityService.deletePost(postId);
+//        log.info("Post deleted");
+//        return "redirect:/index";
+//    }
 
 }

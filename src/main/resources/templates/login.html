@@ -25,7 +25,8 @@
             <div class="card shadow ">
                 <div class="card-body">
                     <!-- login form-->
-                    <form th:action="@{/login}" th:method="post">
+                    <form th:action="@{/login}"  th:method="post">
+                        <p th:if="${param.error != null}"> Wrong Username or password</p>
                         <input class="form-control mb-3 form-control-lg" th:type="text" th:name="username" type="text" placeholder="Email or username">
                         <input class="form-control form-control-lg " th:type="password" th:name="password" placeholder="Password">
                         <button type="submit" class="btn login-color mt-3 mb-1 w-100 btn-lg fw-bold text-white">Login

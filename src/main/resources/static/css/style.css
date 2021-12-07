@@ -11,6 +11,19 @@ header {
   top: 0;
   border-bottom: 1px #4F4F4F solid;
 }
+.no-submit-button {
+  position: relative;
+}
+
+.hidden-submit {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
 
 header .head-container {
   margin: 0px 16px;

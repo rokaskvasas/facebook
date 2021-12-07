@@ -3,7 +3,7 @@ package eu.codeacademy.spring.facebook.service.impl;
 import eu.codeacademy.spring.facebook.entity.CommentEntity;
 import eu.codeacademy.spring.facebook.exception.NoSuchCommentExist;
 import eu.codeacademy.spring.facebook.exception.NoSuchPostById;
-import eu.codeacademy.spring.facebook.exception.NotFoundUserById;
+import eu.codeacademy.spring.facebook.exception.UserByIdNotFound;
 import eu.codeacademy.spring.facebook.model.Comments;
 import eu.codeacademy.spring.facebook.repository.CommentEntityRepository;
 import eu.codeacademy.spring.facebook.repository.PostEntityRepository;
@@ -37,7 +37,7 @@ public class CommentEntityServiceImpl implements CommentEntityService {
         entity.setCreatedAt(LocalDateTime.now());
         entity.setPostId(request.getPostId());
         entity.setUserComment(userEntityRepository.findByUserId(request.getUserId())
-                .orElseThrow(() -> new NotFoundUserById("Couldn't find user by id: " + request.getUserId())));
+                .orElseThrow(() -> new UserByIdNotFound("Couldn't find user by id: " + request.getUserId())));
         entity.setPostComment(postEntityRepository.getByPostId(request.getPostId())
                 .orElseThrow(() -> new NoSuchPostById("Couldn't find post by id: " + request.getPostId())));
         commentEntityRepository.saveAndFlush(entity);

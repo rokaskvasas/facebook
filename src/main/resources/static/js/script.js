@@ -20,15 +20,18 @@ function commentBtnActivation(btn,text) {
     }
 }
 
+// window.onload=function(){
+//     const editmodal = document.querySelector('#editPostModal');
+//     editmodal.addEventListener('show.bs.modal', openModule)
+// }
 
-const editmodal = document.querySelector('#editPostModal');
-editmodal.addEventListener('show.bs.modal', openModule)
 
 
 // TODO:: modaltext.textcontent doesn't not fills with text..
 
 function openModule(event) {
 
+    alert("yay");
     // Button that triggered the modal
 
     let button = event.relatedTarget;
@@ -39,7 +42,7 @@ function openModule(event) {
 
     let recipient = button.getAttribute('data-bs-postId');
 
-    let modalText = exampleModal.querySelector('#editPostText');
+    let modalText = exampleModal.querySelector('.editPostText');
 
     modalText.textContent = recipient;
 

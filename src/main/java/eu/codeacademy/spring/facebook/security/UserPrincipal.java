@@ -27,17 +27,6 @@ public class UserPrincipal implements UserDetails {
     }
 
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//
-////        TODO:: endless permissions and roles doesn't sets right by DB(entity problem).
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//        for (RoleEntity role : roles) {
-//            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-//        }
-//        return authorities;
-//    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String[] userRoles = roles.stream().map((RoleEntity::getRoleName)).toArray(String[]::new);

@@ -4,6 +4,7 @@ package eu.codeacademy.spring.facebook.service;
 import eu.codeacademy.spring.facebook.entity.PostEntity;
 import eu.codeacademy.spring.facebook.model.Post;
 import eu.codeacademy.spring.facebook.request.PostRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public interface PostEntityService {
 
     void createNewPost(PostRequest request);
 
+    Page<PostEntity> getAllPostEntitiesPageable(int pageNumber, int pageSize);
 
     void editPost(PostRequest postRequest);
 
-    void deletePost(Long postId);
+    void deletePostAndComments(Long postId);
 }

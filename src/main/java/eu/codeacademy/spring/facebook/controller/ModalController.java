@@ -85,10 +85,10 @@ public class ModalController {
 //        if (result.hasErrors()) {
 //            return "error";
 //        }
-////        commentRequest.setPostId(); TODO:: dunno how..yet
-////        commentRequest.setUserId(principal.getUserId()); TODO:: long value as object ??
+////        commentRequest.setPostId();
+////        commentRequest.setUserId(principal.getUserId());
 //        commentEntityService.editComment(commentRequest);
-////        TODO:: how to forward correct ?? redirect:forward:index ?
+////
 //        return "redirect:/index";
 //    }
 

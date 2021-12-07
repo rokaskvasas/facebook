@@ -26,7 +26,7 @@ public class CommentController {
         if (result.hasErrors()) {
             return "error";
         }
-//        TODO:: Maybe better set from hidden input ??
+//        +commentRequest.getReturnPath()
         commentRequest.setUserId(principal.getUserId());
         commentEntityService.createNewComment(commentRequest);
         return "redirect:/index";
@@ -34,19 +34,16 @@ public class CommentController {
     }
 
     @PutMapping("/edit")
-    public String editComment(@ModelAttribute("commentAtt") CommentRequest commentRequest, BindingResult result,
-                              @AuthenticationPrincipal UserPrincipal principal) {
+    public String editComment(@ModelAttribute("commentAtt") CommentRequest commentRequest, BindingResult result) {
         if (result.hasErrors()) {
             return "error";
         }
-//        commentRequest.setPostId();
-        commentRequest.setUserId(principal.getUserId());
         commentEntityService.editComment(commentRequest);
         return "redirect:/index";
     }
 
     @DeleteMapping("/delete/{commentId}")
-    public String deleteComment(@PathVariable Long commentId){
+    public String deleteComment(@PathVariable Long commentId) {
         commentEntityService.deleteComment(commentId);
         return "redirect:/index";
     }

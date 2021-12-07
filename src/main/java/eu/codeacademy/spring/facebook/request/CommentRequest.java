@@ -23,5 +23,7 @@ public class CommentRequest {
 
     private String commentText;
 
+    private String returnPath;
+
 
 }

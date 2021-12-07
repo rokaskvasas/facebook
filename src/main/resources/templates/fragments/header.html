@@ -11,9 +11,10 @@
             </div>
             <div>
                 <!-- search bar-->
-                <form>
-                    <input class="rounded-pill border-0 ps-3 ms-2" type="text" id="search" name="search"
+                <form class="no-submit-button" th:action="@{/user}" th:object="${searchUser}" th:method="get">
+                    <input th:field="*{username}" class="rounded-pill border-0 ps-3 ms-2" type="text" id="search" name="search"
                            autocomplete="off" placeholder="Search Facebook">
+                    <button type="submit" class="btn btn-primary hidden-submit">search</button>
                 </form>
             </div>
         </div>

@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+
+
 @Slf4j
 @Controller
 @RequestMapping("/login")
@@ -17,9 +19,10 @@ public class LoginController {
 
 
     @GetMapping
-    public String login(Model model){
+    public String loginView(Model model) {
         model.addAttribute("user", new UserRequest());
         return "login";
     }
+
 
 }

@@ -17,12 +17,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Error page</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link th:href="@{/dependencies/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
-<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
-<h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|"></h1>
-<p th:utext="${errorMessage}"></p>
-<a class="display-1 text-center text-danger"  th:href="@{/index}">BACK TO MENU</a>
+<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}" class="container">
+    <div class="align-items-center">
+        <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|"></h1>
+        <p th:utext="${errorMessage}"></p>
+        <a class="display-1 text-center text-danger" th:href="@{/index}">BACK TO MENU</a>
+    </div>
 </body>
 </html>

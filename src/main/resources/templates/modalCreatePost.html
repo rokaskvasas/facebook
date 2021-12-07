@@ -48,7 +48,7 @@
 </header>
 <main>
     <section>
-        <!--        TODO :: Need to fix roles to make this work-->
+
         <!--        th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'+','+'ROLE_USER'')')}"-->
         <div class="create-post p-3">
             <!-- create post -->
@@ -256,7 +256,6 @@
                                                 </div>
 
                                                 <!-- text -->
-<!--                                                TODO :: why error !??!?!?-->
                                                 <p th:text="|${comment?.getUserComment()?.firstName} ${comment.getUserComment()?.lastName}|"
                                                    class="fw-bold m-0 text-light"></p>
                                                 <div class="post__comment__content p-2 rounded">
@@ -308,7 +307,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- delete edit modal -->
+                                            <!-- delete comment modal -->
                                             <div class="delete__post">
                                                 <div class="modal fade" th:id="'deleteCommentModal'+${comment.commentId}" tabindex="-1" aria-labelledby="deleteCommentModalLabel"
                                                      aria-hidden="true">
@@ -343,7 +342,6 @@
                                                 <img src="https://unsplash.it/40" alt="avatar" class="rounded-circle me-2 align-self-center" style="width: 38px; height: 38px; object-fit: cover;"/>
                                             </div>
                                             <!-- input -->
-                                            <!-- TODO:: ZJBS VEIKIA-->
                                                 <input th:data-commentId="${post.postId}"
                                                        onkeyup="commentBtnActivation('createCommentButton'+this.getAttribute('data-commentId'),'createCommentText'+this.getAttribute('data-commentId'))"
                                                    th:field="*{commentText}" th:id="'createCommentText'+${post.postId}" type="text"

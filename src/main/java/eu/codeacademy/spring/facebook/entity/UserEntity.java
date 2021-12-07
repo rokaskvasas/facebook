@@ -1,5 +1,6 @@
 package eu.codeacademy.spring.facebook.entity;
 
+import eu.codeacademy.spring.facebook.validation.ValidUsername;
 import jdk.jfr.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class UserEntity {
     @Column(name = "email")
     private String email;
 
+    @ValidUsername
     @Column(name = "username")
     private String username;
 
