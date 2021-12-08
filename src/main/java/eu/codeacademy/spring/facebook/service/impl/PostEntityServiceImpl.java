@@ -2,6 +2,7 @@ package eu.codeacademy.spring.facebook.service.impl;
 
 
 import eu.codeacademy.spring.facebook.entity.PostEntity;
+import eu.codeacademy.spring.facebook.entity.UserEntity;
 import eu.codeacademy.spring.facebook.exception.UserByIdNotFound;
 import eu.codeacademy.spring.facebook.exception.PostNotFound;
 import eu.codeacademy.spring.facebook.model.Post;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,11 +45,17 @@ public class PostEntityServiceImpl implements PostEntityService {
     }
 
     @Override
-    public Page<PostEntity> getAllPostEntitiesPageable(int pageNumber, int pageSize){
+    public Page<PostEntity> getAllPostEntitiesPageable(int pageNumber, int pageSize) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
         return postEntityRepository.findAll(page);
     }
-//    new Sort(Sort.Direction.ASC, "created_at") TODO:: WHY NO WORK
+
+    @Override
+    public Page<PostEntity> getAllPostEntitiesPageableByUser(int pageNumber, int pageSize, String username) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        UserEntity user = userEntityRepository.findByUsername(username).orElseThrow();
+        return postEntityRepository.findAllByUserId(user.getUserId(), page);
+    }
 
     @Override
     public void createNewPost(PostRequest request) {
@@ -56,7 +64,7 @@ public class PostEntityServiceImpl implements PostEntityService {
         entity.setUserId(request.getUserId());
         entity.setCreatedAt(LocalDateTime.now());
         entity.setUserPost(userEntityRepository.findByUserId(request.getUserId())
-                .orElseThrow(() -> new UserByIdNotFound("Couldn't find such user by id: "+request.getUserId())));
+                .orElseThrow(() -> new UserByIdNotFound("Couldn't find such user by id: " + request.getUserId())));
         postEntityRepository.saveAndFlush(entity);
     }
 
@@ -72,9 +80,9 @@ public class PostEntityServiceImpl implements PostEntityService {
     @Override
     @Transactional
     public void deletePostAndComments(Long postId) {
-       var post = postEntityRepository.getByPostId(postId)
-               .orElseThrow(() -> new PostNotFound(String.format("Post with such id: %d not found",postId)));
-        if(!post.getPostComments().isEmpty()){
+        var post = postEntityRepository.getByPostId(postId)
+                .orElseThrow(() -> new PostNotFound(String.format("Post with such id: %d not found", postId)));
+        if (!post.getPostComments().isEmpty()) {
             deletePostComments(post);
         }
         postEntityRepository.removePostEntityByPostId(postId);

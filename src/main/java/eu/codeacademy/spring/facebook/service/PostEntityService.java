@@ -20,6 +20,8 @@ public interface PostEntityService {
 
     Page<PostEntity> getAllPostEntitiesPageable(int pageNumber, int pageSize);
 
+    Page<PostEntity> getAllPostEntitiesPageableByUser(int pageNumber, int pageSize, String username);
+
     void editPost(PostRequest postRequest);
 
     void deletePostAndComments(Long postId);

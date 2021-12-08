@@ -24,17 +24,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserEntityService userEntityService;
     private final PostEntityService postEntityService;
 
 
     @GetMapping()
     public String index(@RequestParam(name = "username") String username,
                         @RequestParam(name = "page", required = false, defaultValue = "0") int pageNumber,
-                        @RequestParam(name = "pageSize", required = false, defaultValue = "5") int pageSize, Model model) {
-
-        model.addAttribute("usernameDB", userEntityService.getUserEntity(username));
-        model.addAttribute("postsDB", postEntityService.getAllPostEntitiesPageable(pageNumber, pageSize));
+                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize, Model model) {
+        model.addAttribute("postsDB", postEntityService.getAllPostEntitiesPageableByUser(pageNumber, pageSize, username));
         model.addAttribute("postAtt", new PostRequest());
         model.addAttribute("commentAtt", new CommentRequest());
         model.addAttribute("searchUser", new UserRequest());

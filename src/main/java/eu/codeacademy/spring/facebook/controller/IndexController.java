@@ -27,7 +27,7 @@ public class IndexController {
     @GetMapping
     public String index(Model model,
                         @RequestParam(name = "page", required = false, defaultValue = "0") int pageNumber,
-                        @RequestParam(name = "pageSize", required = false, defaultValue = "5") int pageSize,
+                        @RequestParam(name = "pageSize", required = false, defaultValue = "3") int pageSize,
                         UserPrincipal userPrincipal) {
         model.addAttribute("postsDB", postEntityService.getAllPostEntitiesPageable(pageNumber, pageSize));
         model.addAttribute("postAtt", new PostRequest());

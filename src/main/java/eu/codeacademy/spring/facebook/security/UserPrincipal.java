@@ -65,9 +65,6 @@ public class UserPrincipal implements UserDetails {
     }
 
 
-    private Set<Role> entitySetToRoleSet(Set<RoleEntity> entity){
-        return entity.stream().map(this::createRoleFromEntity).collect(Collectors.toSet());
-    }
 
     private Role createRoleFromEntity(RoleEntity entity){
         var role = new Role();
