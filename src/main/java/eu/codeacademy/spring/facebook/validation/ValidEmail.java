@@ -1,6 +1,6 @@
 package eu.codeacademy.spring.facebook.validation;
 
-import eu.codeacademy.spring.facebook.validation.validators.ValidUsernameValidator;
+import eu.codeacademy.spring.facebook.validation.validators.ValidEmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -11,12 +11,11 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD, ElementType.METHOD})
-@Constraint(validatedBy = ValidUsernameValidator.class)
-public @interface ValidUsername {
-    String message() default "Username is already taken";
+@Constraint(validatedBy = ValidEmailValidator.class)
+public @interface ValidEmail {
+    String message() default "Email is already taken";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
 }

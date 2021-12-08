@@ -20,11 +20,10 @@ function commentBtnActivation(btn,text) {
     }
 }
 
-// window.onload=function(){
-//     const editmodal = document.querySelector('#editPostModal');
-//     editmodal.addEventListener('show.bs.modal', openModule)
-// }
-
+window.onload=function(){
+    const editmodal = document.querySelector('#editPostModal');
+    editmodal.addEventListener('show.bs.modal', openModule)
+}
 
 
 // TODO:: modaltext.textcontent doesn't not fills with text..
@@ -46,21 +45,4 @@ function openModule(event) {
 
     modalText.textContent = recipient;
 
-}
-function transferTextToEditModal(from, to, event){
-
-     editCommentModal = document.querySelector('')
-    let button = event.relatedTarget
-
-}
-
-function sendCustomHTTPMethod(url,method) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open(`${method}`, url, true);
-    xhttp.onload = function () {
-        let responseURL = xhttp.responseURL;
-        console.log("Redirecting to:", responseURL);
-        window.location.replace(responseURL);
-    };
-    xhttp.send();
 }

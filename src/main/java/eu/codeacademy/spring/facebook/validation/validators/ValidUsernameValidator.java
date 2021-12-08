@@ -1,6 +1,7 @@
-package eu.codeacademy.spring.facebook.validation;
+package eu.codeacademy.spring.facebook.validation.validators;
 
 import eu.codeacademy.spring.facebook.repository.UserEntityRepository;
+import eu.codeacademy.spring.facebook.validation.ValidUsername;
 import lombok.RequiredArgsConstructor;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -20,7 +21,6 @@ public class ValidUsernameValidator implements ConstraintValidator<ValidUsername
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext ctx){
-
         return userEntityRepository.findByUsername(username).isEmpty();
     }
 }

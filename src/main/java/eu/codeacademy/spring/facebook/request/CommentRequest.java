@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,7 +21,7 @@ public class CommentRequest {
     private LocalDateTime createdAt;
 
     private LocalDateTime updateAt;
-
+    @NotBlank
     private String commentText;
 
     private String returnPath;

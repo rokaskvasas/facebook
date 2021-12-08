@@ -33,8 +33,4 @@ public class RegisterController {
         return "redirect:/login";
     }
 
-    /* redirect ismeta Neither BindingResult nor plain target object for bean name 'searchUser' available as request attribute
-    kai result.hasErrors return index
-
-     */
 }

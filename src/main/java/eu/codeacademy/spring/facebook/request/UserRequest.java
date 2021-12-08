@@ -1,11 +1,14 @@
 package eu.codeacademy.spring.facebook.request;
 
 import com.sun.istack.NotNull;
+import eu.codeacademy.spring.facebook.validation.ValidEmail;
+import eu.codeacademy.spring.facebook.validation.ValidUsername;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -26,8 +29,8 @@ public class UserRequest {
     private String lastName;
 
     @NotBlank
-    @Column(unique = true)
-    @Size(min = 1,max = 15)
+    @ValidUsername
+    @Size(min = 1,max = 20)
     private String username;
 
     @NotBlank
@@ -35,7 +38,7 @@ public class UserRequest {
     private String password;
 
     @NotBlank
-    @Column(unique = true)
+    @ValidEmail
     private String email;
 
     private LocalDateTime registeredAt;
