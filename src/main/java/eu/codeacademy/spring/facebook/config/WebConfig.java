@@ -16,21 +16,18 @@ import java.util.List;
 
 
 @Configuration
-public class WebConfig  implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/login").setViewName("login");
-//    }
 
     @Bean
-    public MessageSource messageSource(){
+    public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-//    @Override
+
+    //    @Override
 //    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 //        PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
 //        resolver.setOneIndexedParameters(true);
@@ -39,7 +36,7 @@ public class WebConfig  implements WebMvcConfigurer {
 //    }
     @Bean
     @Override
-    public Validator getValidator(){
+    public Validator getValidator() {
         var bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageSource());
         return bean;

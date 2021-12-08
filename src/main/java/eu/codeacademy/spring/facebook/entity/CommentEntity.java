@@ -34,10 +34,10 @@ public class CommentEntity {
     private String commentText;
 
     @ManyToOne
-    @JoinColumn(name = "post_id",insertable = false, updatable = false)
+    @JoinColumn(name = "post_id", insertable = false, updatable = false)
     private PostEntity postComment;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private UserEntity userComment;
 }

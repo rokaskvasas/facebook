@@ -21,7 +21,7 @@ public class PostController {
 
     private final PostEntityService postEntityService;
 
-//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    //    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/create")
     public String createPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result,
                              @AuthenticationPrincipal UserPrincipal principal) {
@@ -35,8 +35,8 @@ public class PostController {
     }
 
     @PutMapping("/edit")
-    public String editPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result){
-        if(result.hasErrors()){
+    public String editPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result) {
+        if (result.hasErrors()) {
             return "error";
         }
         postEntityService.editPost(postRequest);
@@ -45,7 +45,7 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{postId}")
-    public String deletePost(@PathVariable Long postId){
+    public String deletePost(@PathVariable Long postId) {
         postEntityService.deletePostAndComments(postId);
         log.info("Post deleted");
         return "redirect:/index";

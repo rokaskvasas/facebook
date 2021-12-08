@@ -21,12 +21,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
 
-        return userEntityRepository.findByUsernameOrEmail(usernameOrEmail,usernameOrEmail)
+        return userEntityRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .map(this::convertUserEntityToPrincipal)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    private UserPrincipal convertUserEntityToPrincipal(UserEntity user){
+    private UserPrincipal convertUserEntityToPrincipal(UserEntity user) {
         return new UserPrincipal(user.getUserId(), user.getUsername(), user.getPassword(), user.getRoles());
     }
 }

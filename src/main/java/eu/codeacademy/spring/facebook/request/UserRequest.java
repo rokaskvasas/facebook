@@ -21,20 +21,20 @@ public class UserRequest {
     private Long userId;
 
     @NotBlank
-    @Size(min = 1,max = 15)
+    @Size(min = 1, max = 15)
     private String firstName;
 
     @NotBlank
-    @Size(min = 1,max = 15)
+    @Size(min = 1, max = 15)
     private String lastName;
 
     @NotBlank
     @ValidUsername
-    @Size(min = 1,max = 20)
+    @Size(min = 1, max = 20)
     private String username;
 
     @NotBlank
-    @Size(min = 4,max = 20)
+    @Size(min = 4, max = 20)
     private String password;
 
     @NotBlank

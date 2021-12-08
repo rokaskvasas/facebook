@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface PostEntityRepository extends JpaRepository<PostEntity, Long> {
 
     Optional<PostEntity> getByPostId(Long postId);
+
     Page<PostEntity> findAllByUserId(Long userId, Pageable pageable);
 
     @Modifying

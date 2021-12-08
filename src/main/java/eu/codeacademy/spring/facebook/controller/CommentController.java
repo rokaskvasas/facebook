@@ -26,7 +26,6 @@ public class CommentController {
         if (result.hasErrors()) {
             return "error";
         }
-//        +commentRequest.getReturnPath()
         commentRequest.setUserId(principal.getUserId());
         commentEntityService.createNewComment(commentRequest);
         return "redirect:/index";

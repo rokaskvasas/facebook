@@ -33,7 +33,7 @@ public class IndexController {
         model.addAttribute("postAtt", new PostRequest());
         model.addAttribute("commentAtt", new CommentRequest());
         model.addAttribute("searchUser", new UserRequest());
-        model.addAttribute("userPrincipal",userPrincipal);
+        model.addAttribute("userPrincipal", userPrincipal);
 
         return "index";
     }

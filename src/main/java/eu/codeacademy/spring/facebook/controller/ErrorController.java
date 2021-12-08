@@ -44,10 +44,10 @@ public class ErrorController {
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public String accessDenied(AccessDeniedException e, Model model){
+    public String accessDenied(AccessDeniedException e, Model model) {
         log.info("Access: {}", e.getMessage());
         String errorMessage = e.getMessage();
-        model.addAttribute("errorMessage",errorMessage);
+        model.addAttribute("errorMessage", errorMessage);
         return "error";
     }
 //    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
