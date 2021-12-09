@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class HomeController {
+public class UserController {
 
     private final PostEntityService postEntityService;
 
