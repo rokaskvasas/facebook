@@ -50,6 +50,4 @@ public class ErrorController {
         model.addAttribute("errorMessage", errorMessage);
         return "error";
     }
-//    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-//    @ResponseStatus(HttpStatus.S)
 }

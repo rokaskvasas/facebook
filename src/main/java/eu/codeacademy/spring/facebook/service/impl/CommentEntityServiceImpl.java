@@ -44,6 +44,7 @@ public class CommentEntityServiceImpl implements CommentEntityService {
     }
 
     @Override
+    @Transactional
     public void editComment(CommentRequest commentRequest) {
         var entity = commentEntityRepository.findById(commentRequest.getCommentId())
                 .orElseThrow(() ->

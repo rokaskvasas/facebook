@@ -19,7 +19,6 @@
 <header th:replace="fragments/header :: header"></header>
 <main>
     <section>
-        <!--   sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"     -->
         <div sec:authorize="!hasRole('ROLE_ANONYMOUS')" class="create-post p-3">
             <!-- create post -->
             <div class="d-flex">
@@ -47,21 +46,20 @@
                         <img src="https://unsplash.it/38" alt="avatar" class="rounded-circle me-3"
                              style="width: 38px; height: 38px; object-fit: cover;">
                         <div>
-                            <p th:href="@{/user?username=__${post.getUserPost().getUsername()}__}" th:text="|${post?.getUserPost()?.firstName} ${post?.getUserPost()?.lastName}|"
-                               class="m-0 fw-bold text-decoration-none text-white"></p>
-                            <span
+                            <a th:href="@{/user?username=__${post.getUserPost().getUsername()}__}"
+                               th:text="|${post?.getUserPost()?.firstName} ${post?.getUserPost()?.lastName}|"
+                               class="m-0 fw-bold text-decoration-none text-white d-inline-flex"></a>
+                            <p
                                     th:text="${post.updatedAt == null}?${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}:'updated at: '
                                     +${#temporals.format(post.updatedAt,'yyyy-MM-dd HH:mm')}"
-                                    class="text-muted fs-7 time"></span>
+                                    class="text-muted fs-7 time"></p>
                         </div>
                     </div>
-<!--<i th:if="${post?.userId == #authentication.getPrincipal().getUserId()}?${#authorization.expression('hasRole(''ROLE_USER'') or hasRole(''ROLE_ADMIN'')')}:${#authorization.expression('hasRole(''ROLE_ANONYMOUS'')')}"-->
                     <!-- edit -->
                     <div sec:authorize="!hasRole('ROLE_ANONYMOUS')">
                         <i th:if="${post?.userId == #authentication.principal.getUserId()}?${#authorization.expression('hasRole(''ROLE_USER'') or hasRole(''ROLE_ADMIN'')')}:${#authorization.expression('hasRole(''ROLE_ANONYMOUS'') or hasRole(''ROLE_ADMIN'')')}"
                            class="fas fa-ellipsis-h text-muted fs-5 h-25"
                            type="button" data-bs-toggle="dropdown" aria-expanded="false" id="postMenu"></i>
-                        <!--                    <p th:if="${post?.userId == userPrincipal?.userId}?${#authorization.expression('hasRole(''ROLE_USER'')')}:${#authorization.expression('hasRole(''ROLE_ANONYMOUS'')')}">test</p>-->
                         <!-- edit menu -->
                         <ul class="dropdown-menu border-0 dropdown__custom" aria-labelledby="postMenu">
                             <li class="d-flex align-items-center">
@@ -77,9 +75,6 @@
                             </li>
                         </ul>
                     </div>
-
-
-
                 </div>
                 <!-- edit post modal -->
                 <div th:replace="/fragments/modals :: editPostModal" class="edit__post">
@@ -127,7 +122,8 @@
                                             <!-- comment text -->
                                             <div class="rounded w-100 ">
                                                 <!-- menu -->
-                                                <div sec:authorize="!hasRole('ROLE_ANONYMOUS')" class="d-flex justify-content-end mb-2 ">
+                                                <div sec:authorize="!hasRole('ROLE_ANONYMOUS')"
+                                                     class="d-flex justify-content-end mb-2 ">
                                                     <i th:if="${comment.userId == #authentication.getPrincipal().getUserId()}?${#authorization.expression('hasRole(''ROLE_USER'') or hasRole(''ROLE_ADMIN'')')}:${#authorization.expression('hasRole(''ROLE_ANONYMOUS'') or hasRole(''ROLE_ADMIN'')')}"
                                                        sec:authorize="!hasRole('ROLE_ANONYMOUS')"
                                                        class="fas fa-ellipsis-h " type="button"
@@ -208,11 +204,4 @@
 
 <script th:src="@{/js/script.js}" src="./js/script.js" defer="defer"></script>
 <script th:src="@{/dependencies/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script>
-    // $(document).ready(() => {
-    //     $('.editPostModal').on('show.bs.modal', (e) => {
-    //         console.log(e.relatedTarget);
-    //     })
-    // })
-</script>
 </html>

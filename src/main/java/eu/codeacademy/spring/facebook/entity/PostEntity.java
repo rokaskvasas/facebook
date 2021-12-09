@@ -36,7 +36,7 @@ public class PostEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userPost;
 
-    @OneToMany(mappedBy = "postComment")
+    @OneToMany(mappedBy = "postComment", orphanRemoval = true)
     private List<CommentEntity> postComments;
 
 }

@@ -26,15 +26,15 @@
                 <div class="card-body">
                     <!-- login form-->
                     <form th:action="@{/login}"  th:method="post">
-                        <p th:if="${param.error != null}"> Wrong Username or password</p>
+                        <p th:if="${param.error != null}" class="text-danger text-center fw-bold"> Wrong Username or password!</p>
                         <input class="form-control mb-3 form-control-lg" th:type="text" th:name="username" type="text" placeholder="Email or username">
                         <input class="form-control form-control-lg " th:type="password" th:name="password" placeholder="Password">
                         <button type="submit" class="btn login-color mt-3 mb-1 w-100 btn-lg fw-bold text-white">Login
                         </button>
                     </form>
-                    <a href="#" id="forgotPass"
+                    <a th:href="@{/index}" id="index"
                        class="btn btn-link mb-4 align-self-center d-flex justify-content-center text-decoration-none border-bottom pb-3">
-                        Forgot password?
+                        Check our website!
                     </a>
                     <button type="button"
                             class="btn btn-success mt-3 btn-lg d-flex justify-content-center mb-2  mx-auto w-75 fw-bold pt-2 create-acc "

@@ -52,23 +52,4 @@ public class PostController {
     }
 
 
-//    @PostMapping("/edit")
-//    public String editPost(@ModelAttribute("postAtt") PostRequest postRequest, BindingResult result,
-//                           @AuthenticationPrincipal UserPrincipal principal){
-//        if(result.hasErrors()){
-//            return "error";
-//        }
-//        postRequest.setUserId(principal.getUserId());
-//        postEntityService.editPost(postRequest);
-//        log.info("Post edited");
-//        return "redirect:/index";
-//    }
-//
-//    @PostMapping("/delete/{postId}")
-//    public String deletePost(@PathVariable Long postId){
-//        postEntityService.deletePost(postId);
-//        log.info("Post deleted");
-//        return "redirect:/index";
-//    }
-
 }

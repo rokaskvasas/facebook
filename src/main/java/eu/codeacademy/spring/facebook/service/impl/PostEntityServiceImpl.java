@@ -32,7 +32,6 @@ public class PostEntityServiceImpl implements PostEntityService {
 
     private final UserEntityRepository userEntityRepository;
 
-    private final CommentEntityService commentEntityService;
 
     @Override
     public List<Post> getAllPosts() {
@@ -46,14 +45,15 @@ public class PostEntityServiceImpl implements PostEntityService {
 
     @Override
     public Page<PostEntity> getAllPostEntitiesPageable(int pageNumber, int pageSize) {
-        Pageable page = PageRequest.of(pageNumber, pageSize);
+        Pageable page = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
         return postEntityRepository.findAll(page);
     }
 
     @Override
     public Page<PostEntity> getAllPostEntitiesPageableByUser(int pageNumber, int pageSize, String username) {
         Pageable page = PageRequest.of(pageNumber, pageSize);
-        UserEntity user = userEntityRepository.findByUsername(username).orElseThrow();
+        UserEntity user = userEntityRepository.findByUsername(username)
+                .orElseThrow(() -> new UserByIdNotFound("User not found: " + username));
         return postEntityRepository.findAllByUserId(user.getUserId(), page);
     }
 
@@ -69,6 +69,7 @@ public class PostEntityServiceImpl implements PostEntityService {
     }
 
     @Override
+    @Transactional
     public void editPost(PostRequest postRequest) {
         var entity = postEntityRepository.findById(postRequest.getPostId())
                 .orElseThrow(() -> new PostNotFound("Post wasn't found in DB"));
@@ -77,21 +78,13 @@ public class PostEntityServiceImpl implements PostEntityService {
         postEntityRepository.save(entity);
     }
 
+
     @Override
     @Transactional
     public void deletePostAndComments(Long postId) {
-        var post = postEntityRepository.getByPostId(postId)
-                .orElseThrow(() -> new PostNotFound(String.format("Post with such id: %d not found", postId)));
-        if (!post.getPostComments().isEmpty()) {
-            deletePostComments(post);
-        }
         postEntityRepository.removePostEntityByPostId(postId);
     }
 
-
-    private void deletePostComments(PostEntity post) {
-        post.getPostComments().forEach(entity -> commentEntityService.deleteComment(entity.getCommentId()));
-    }
 
     private Post createPostFromEntity(PostEntity entity) {
         Post post = new Post();

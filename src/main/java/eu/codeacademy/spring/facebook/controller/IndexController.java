@@ -27,13 +27,11 @@ public class IndexController {
     @GetMapping
     public String index(Model model,
                         @RequestParam(name = "page", required = false, defaultValue = "0") int pageNumber,
-                        @RequestParam(name = "pageSize", required = false, defaultValue = "3") int pageSize,
-                        UserPrincipal userPrincipal) {
+                        @RequestParam(name = "pageSize", required = false, defaultValue = "3") int pageSize) {
         model.addAttribute("postsDB", postEntityService.getAllPostEntitiesPageable(pageNumber, pageSize));
         model.addAttribute("postAtt", new PostRequest());
         model.addAttribute("commentAtt", new CommentRequest());
         model.addAttribute("searchUser", new UserRequest());
-        model.addAttribute("userPrincipal", userPrincipal);
 
         return "index";
     }
