@@ -39,7 +39,7 @@ What gets evaluated
 Check in browser
 http://localhost:8080/login
 
-#### 3. Architecture
+## 3. Architecture
 
     1. DB + DB model (Entities)
     2. Logic services (model)
@@ -47,9 +47,10 @@ http://localhost:8080/login
     4.View (html+JS)
     
     
-#### 4. Technologies
+## 4. Technologies
 
-    - Spring 5.1
-    - Thymeleaf
-    - Maven
+- Spring 5.1
+- Thymeleaf
+- Maven
+
 
