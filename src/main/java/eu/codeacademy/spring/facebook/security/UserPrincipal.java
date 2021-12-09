@@ -65,9 +65,4 @@ public class UserPrincipal implements UserDetails {
     }
 
 
-    private Role createRoleFromEntity(RoleEntity entity) {
-        var role = new Role();
-        role.setRoleName(entity.getRoleName());
-        return role;
-    }
 }
