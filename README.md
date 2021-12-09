@@ -6,7 +6,7 @@ Goal
 
 Create blog type applications, which has three types of users: Admin, User, Anonymous.
 
-Buisness reuirements
+Business requirements
 
     Admin can make all CRUD operations on all users.
     User is only able to make changes to his own posts, comments and create a new post.
