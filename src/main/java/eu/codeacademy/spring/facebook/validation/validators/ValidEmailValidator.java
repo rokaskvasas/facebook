@@ -1,6 +1,5 @@
 package eu.codeacademy.spring.facebook.validation.validators;
 
-import eu.codeacademy.spring.facebook.exception.EmailValidatorException;
 import eu.codeacademy.spring.facebook.repository.UserEntityRepository;
 import eu.codeacademy.spring.facebook.validation.ValidEmail;
 import lombok.RequiredArgsConstructor;
