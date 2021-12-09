@@ -1,7 +1,7 @@
 ﻿facebook
 ====
 
-#### 1. Requirements
+## 1. Requirements
 Goal
 
 Create blog type applications, which has three types of users: Admin, User, Anonymous.
@@ -20,7 +20,7 @@ What gets evaluated
 - Requirements
 - Code quality
 
-#### 2. Build and run
+## 2. Build and run
 
 > git clone https://github.com/rokaskvasas/facebook.git
 
@@ -38,4 +38,18 @@ What gets evaluated
 
 Check in browser
 http://localhost:8080/login
+
+## 3. Architecture
+
+    1. DB + DB model (Entities)
+    2. Logic services (model)
+    3. Controllers
+    4.View (html+JS)
+    
+    
+## 4. Technologies
+
+    - Spring 5.1
+    - Thymeleaf
+    - Maven
 
