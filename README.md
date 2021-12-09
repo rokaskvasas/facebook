@@ -41,10 +41,10 @@ http://localhost:8080/login
 
 ## 3. Architecture
 
-    1. DB + DB model (Entities)
-    2. Logic services (model)
-    3. Controllers
-    4.View (html+JS)
+1. DB + DB model (Entities)
+2. Logic services (model)
+3. Controllers
+4.View (html+JS)
     
     
 ## 4. Technologies
