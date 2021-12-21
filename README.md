@@ -14,7 +14,7 @@ Business requirements
 Technical requirements
 
     Backend Java 11, Spring boot, Spring Data JPA, MySQL.
-    Website Thymeleaf, SCSS and JavaScript.
+    Website Thymeleaf,HTML, SCSS and JavaScript.
     
 What gets evaluated
 - Requirements
