@@ -49,7 +49,7 @@ http://localhost:8080/login
     
 ## 4. Technologies
 
-- Spring 5.1
+- Spring 2.5
 - Thymeleaf
 - Maven
 
